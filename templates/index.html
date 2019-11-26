@@ -1,0 +1,12 @@
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {% if form.name.errors %}
+        <ul class="errors">
+            {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {{ form.name.label }} {{ form.name() }}
+    {{ form.submit() }}
+</form>

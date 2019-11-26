@@ -1,9 +1,24 @@
-from flask import Flask, make_response
+from flask import Flask, render_template, redirect, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length, Email
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'Shhhhhh... 🤫'
 
-@app.route('/')
+class NameForm(FlaskForm):
+    name = StringField('What\'s your name?', validators=[Length(min=6), DataRequired()])
+    submit = SubmitField('Submit')
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    response = make_response('<h1>Have a cookie</h1>')
-    response.set_cookie('hobnob', 'chocolate chip')
-    return response
+    form = NameForm()
+    if form.validate_on_submit():
+        return redirect('/success')
+    return render_template('index.html', form=form)
+
+@app.route('/success')
+def success():
+    return 'Form submitted successfully'
+
+    
