@@ -1,9 +1,7 @@
-from flask import Flask, make_response
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    response = make_response('<h1>Have a cookie</h1>')
-    response.set_cookie('hobnob', 'chocolate chip')
-    return response
+@app.route('/<name>')
+def user(name):
+    return render_template('user.html', name=name)
