@@ -1,11 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return 'Life is short, buy the guitar'
-
-@app.route('/<param>')
-def thing(param):
-    return 'Life is short, buy the {}'.format(param)
+    return 'You have made a {} request'.format(request.method)
