@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Flask, redirect
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    return 'You have made a {} request'.format(request.method)
+    return redirect('https://nationalarchives.gov.uk')
