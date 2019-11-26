@@ -1,7 +1,7 @@
-from flask import Flask, redirect
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect('https://nationalarchives.gov.uk')
+    return 'Nothing here', 404
